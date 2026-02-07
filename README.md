@@ -1,97 +1,47 @@
-# Design System Guardian — Homepage POC
+# Guardian — Design System Documentation & QA
 
-A desktop-first SaaS homepage implementation for **Design System Guardian**, a tool that combines documentation generation and design system auditing for product designers, design system maintainers, and frontend engineers.
+A design system tool that generates component documentation and audits UI against design system standards. Built with a shadcn-inspired dark theme.
 
-## Overview
+## Features
 
-This implementation follows the Design System Guardian Homepage POC plan and delivers:
+- **Docs Generator** — Generate documentation for design system components from Figma or GitHub links
+- **QA Checker** — Upload designs and run audits against your source of truth
+- **Configuration** — Set up documentation templates, Claude API, and Figma integration
+- **Component documentation** — View generated docs for Button, Input, Tag, Chips
+- **Audit results** — Violations report with severity, expected fixes, and auto-fix actions
 
-- **Hero** — Headline, value prop, primary/secondary CTAs, product mockup placeholder
-- **Two Pillars** — Documentation and Audit cards with icons and links
-- **Features** — 4-step "How it works" flow (Connect → Configure → Generate/Audit → Fix)
-- **Integration Stack** — Figma, shadcn/ui, Storybook, Code patterns
-- **CTA** — Repeated primary CTA with "Book a demo"
-- **Footer** — Logo, nav links, legal
+## Flow
 
-## Design Tokens
-
-| Token | Value |
-|-------|-------|
-| Canvas | 1440px max-width |
-| Background | #FAFAFA |
-| Primary accent | #000000 |
-| Borders | 1px, #E5E5E5 |
-| Shadows | 0 1px 3px rgba(0,0,0,0.08) |
-| Font | Inter |
-| Spacing | 8px base grid (16, 24, 32, 48px) |
+1. **Start** — Choose Docs Generator or QA Checker, paste a Figma/GitHub link
+2. **Configuration** (first-time) — Documentation template, Claude API, Figma tabs
+3. **Docs** — Analyze → Loading → Component documentation view
+4. **QA** — See a Live Audit → Upload designs, set source of truth → Run Audit → Loading → Results
 
 ## File Structure
 
 ```
 design-system-guardian/
-├── index.html           # Homepage
-├── documentation.html   # Documentation setup & generation flow
-├── documentation-edit.html  # View, edit, export generated docs
-├── documentation.js     # Shared logic (storage, validation, mock generation)
-├── documentation-edit.js   # Edit page (render, export)
-├── documentation.css    # Documentation flow styles
-├── styles.css           # Design tokens, components, sections
-├── README.md            # This file
-└── DESIGN_TOKENS.md     # Token spec for Figma handoff
+├── index.html          # App entry (Guardian app)
+├── app/
+│   ├── app.js          # Router, state, screens
+│   └── app.css         # shadcn-inspired dark theme
+├── documentation.html  # Legacy docs flow
+├── documentation-edit.html
+├── documentation.js
+├── documentation.css
+└── README.md
 ```
 
 ## Viewing
 
 Open `index.html` in a browser. No build step required.
 
-### Documentation flow
-
-1. From the homepage, click **Generate docs** or **Get started**
-2. On `documentation.html`: optionally upload context files, add AI/Figma config, then paste a Figma component URL
-3. Click **Generate** — the flow simulates extraction, research, and generation
-4. View, edit, and export the result on `documentation-edit.html`
-
-**Note:** The generation uses a mock for the demo. Replace the mock in `documentation.js` with real Figma MCP and LLM calls when integrating APIs.
-
-## Publishing
-
-### GitHub Pages
-
-1. Create a new repo on GitHub (e.g. `design-system-guardian`)
-2. From this folder, run:
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/design-system-guardian.git
-   git push -u origin main
-   ```
-3. In GitHub: **Settings → Pages → Source**: Deploy from branch `main`, folder `/` (root)
-4. Site will be at `https://YOUR_USERNAME.github.io/design-system-guardian/`
-
-### Netlify (drag & drop)
-
-1. Go to [app.netlify.com/drop](https://app.netlify.com/drop)
-2. Drag the `design-system-guardian` folder into the drop zone
-3. You’ll get a live URL immediately
-
-### Vercel (with Node)
+## Publishing (GitHub Pages)
 
 ```bash
-npx vercel design-system-guardian
+git add .
+git commit -m "Update Guardian app"
+git push origin main
 ```
 
-## Next Steps
-
-See [NEXT_STEPS.md](../NEXT_STEPS.md) for the implementation roadmap for Documentation and Audit features, referencing the PRD.
-
-## Figma Handoff
-
-Class names mirror the plan's frame naming for easy translation:
-
-- `Section_Hero`, `Section_TwoPillars`, `Section_Features`, etc.
-- `Card_Pillar`, `Card_Feature`, `Button_Primary`, `Button_Secondary`
-- `Integration_Item`, `Section_Footer`
-
-See `DESIGN_TOKENS.md` for values to replicate in Figma.
+Enable GitHub Pages (Settings → Pages → Deploy from branch `main`). Site: `https://YOUR_USERNAME.github.io/design-system-guardian/`
