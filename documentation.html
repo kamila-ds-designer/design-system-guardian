@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generate Documentation — Design System Guardian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="documentation.css">
+</head>
+<body>
+  <main class="DocFlow">
+    <header class="DocFlow__header">
+      <a href="index.html" class="DocFlow__logo">Design System Guardian</a>
+      <nav class="DocFlow__nav">
+        <a href="index.html">Home</a>
+        <a href="documentation.html" class="DocFlow__nav--active">Documentation</a>
+      </nav>
+    </header>
+
+    <div class="DocFlow__content">
+      <!-- Step 1: Setup -->
+      <section class="DocSetup" id="doc-setup">
+        <h1 class="DocSetup__title">Generate component documentation</h1>
+        <p class="DocSetup__subtitle">Configure your setup, then paste a Figma component link to generate docs.</p>
+
+        <div class="DocSetup__grid">
+          <!-- 1.1 Context Files -->
+          <div class="DocCard">
+            <h2 class="DocCard__title">1. Context files (optional)</h2>
+            <p class="DocCard__description">Upload markdown files (.md) for templates or team context. At least a template.md is recommended.</p>
+            <div class="UploadZone" id="upload-zone">
+              <input type="file" id="file-input" accept=".md" multiple hidden>
+              <p class="UploadZone__text">Drag files here or <button type="button" class="UploadZone__browse" id="browse-btn">browse</button></p>
+              <p class="UploadZone__hint">.md only, max 5MB per file</p>
+            </div>
+            <div class="FileList" id="file-list"></div>
+          </div>
+
+          <!-- 1.2 AI Configuration -->
+          <div class="DocCard">
+            <h2 class="DocCard__title">2. AI configuration</h2>
+            <p class="DocCard__description">API key for your LLM provider. Stored in session only (cleared on tab close).</p>
+            <form class="AIConfigForm" id="ai-config-form">
+              <div class="FormField">
+                <label for="ai-provider">Provider</label>
+                <select id="ai-provider" name="provider">
+                  <option value="openai">OpenAI</option>
+                  <option value="anthropic">Anthropic</option>
+                </select>
+              </div>
+              <div class="FormField">
+                <label for="api-key">API key</label>
+                <input type="password" id="api-key" name="apiKey" placeholder="sk-..." autocomplete="off">
+              </div>
+              <p class="AIConfigForm__warning">Credentials are stored in sessionStorage and cleared when you close the tab.</p>
+              <button type="submit" class="Button_Primary">Save configuration</button>
+            </form>
+          </div>
+
+          <!-- 1.3 Figma Connection -->
+          <div class="DocCard">
+            <h2 class="DocCard__title">3. Figma connection</h2>
+            <p class="DocCard__description">Personal access token for Figma API access.</p>
+            <form class="FigmaConfigForm" id="figma-config-form">
+              <div class="FormField">
+                <label for="figma-token">Figma token</label>
+                <input type="password" id="figma-token" name="token" placeholder="figd_..." autocomplete="off">
+              </div>
+              <button type="submit" class="Button_Primary">Save token</button>
+            </form>
+            <div class="ConnectionStatus" id="figma-status" aria-live="polite"></div>
+          </div>
+        </div>
+
+        <!-- 1.4 Component Link Input -->
+        <div class="DocCard DocCard--wide">
+          <h2 class="DocCard__title">4. Figma component link</h2>
+          <p class="DocCard__description">Paste a Figma component URL. Example: https://www.figma.com/file/xxx/...?node-id=123</p>
+          <form class="LinkInputForm" id="link-form">
+            <div class="LinkInputForm__row">
+              <input type="url" id="figma-link" placeholder="https://www.figma.com/file/..." class="LinkInputForm__input">
+              <button type="submit" class="Button_Primary" id="generate-btn" disabled>Generate</button>
+            </div>
+            <p class="LinkInputForm__error" id="link-error" role="alert"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- Step 2: Generation Progress -->
+      <section class="DocProgress" id="doc-progress" hidden>
+        <h2 class="DocProgress__title">Generating documentation</h2>
+        <div class="DocProgress__steps" id="progress-steps">
+          <div class="ProgressStep" data-step="extract">
+            <span class="ProgressStep__icon" aria-hidden="true"></span>
+            <span class="ProgressStep__label">Extracting component data</span>
+          </div>
+          <div class="ProgressStep" data-step="identify">
+            <span class="ProgressStep__icon" aria-hidden="true"></span>
+            <span class="ProgressStep__label">Identifying component type</span>
+          </div>
+          <div class="ProgressStep" data-step="context">
+            <span class="ProgressStep__icon" aria-hidden="true"></span>
+            <span class="ProgressStep__label">Processing context</span>
+          </div>
+          <div class="ProgressStep" data-step="research">
+            <span class="ProgressStep__icon" aria-hidden="true"></span>
+            <span class="ProgressStep__label">Researching best practices</span>
+          </div>
+          <div class="ProgressStep" data-step="generate">
+            <span class="ProgressStep__icon" aria-hidden="true"></span>
+            <span class="ProgressStep__label">Generating documentation</span>
+          </div>
+        </div>
+        <p class="DocProgress__error" id="progress-error" role="alert" hidden></p>
+      </section>
+    </div>
+  </main>
+  <script src="documentation.js"></script>
+</body>
+</html>

@@ -29,15 +29,29 @@ This implementation follows the Design System Guardian Homepage POC plan and del
 
 ```
 design-system-guardian/
-├── index.html    # Homepage with all sections
-├── styles.css    # Design tokens, components, sections
-├── README.md     # This file
-└── DESIGN_TOKENS.md  # Token spec for Figma handoff
+├── index.html           # Homepage
+├── documentation.html   # Documentation setup & generation flow
+├── documentation-edit.html  # View, edit, export generated docs
+├── documentation.js     # Shared logic (storage, validation, mock generation)
+├── documentation-edit.js   # Edit page (render, export)
+├── documentation.css    # Documentation flow styles
+├── styles.css           # Design tokens, components, sections
+├── README.md            # This file
+└── DESIGN_TOKENS.md     # Token spec for Figma handoff
 ```
 
 ## Viewing
 
 Open `index.html` in a browser. No build step required.
+
+### Documentation flow
+
+1. From the homepage, click **Generate docs** or **Get started**
+2. On `documentation.html`: optionally upload context files, add AI/Figma config, then paste a Figma component URL
+3. Click **Generate** — the flow simulates extraction, research, and generation
+4. View, edit, and export the result on `documentation-edit.html`
+
+**Note:** The generation uses a mock for the demo. Replace the mock in `documentation.js` with real Figma MCP and LLM calls when integrating APIs.
 
 ## Publishing
 
@@ -67,6 +81,10 @@ Open `index.html` in a browser. No build step required.
 ```bash
 npx vercel design-system-guardian
 ```
+
+## Next Steps
+
+See [NEXT_STEPS.md](../NEXT_STEPS.md) for the implementation roadmap for Documentation and Audit features, referencing the PRD.
 
 ## Figma Handoff
 

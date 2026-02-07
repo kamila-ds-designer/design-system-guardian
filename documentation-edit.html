@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — Design System Guardian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="documentation.css">
+</head>
+<body>
+  <main class="DocFlow">
+    <header class="DocFlow__header">
+      <a href="index.html" class="DocFlow__logo">Design System Guardian</a>
+      <nav class="DocFlow__nav">
+        <a href="index.html">Home</a>
+        <a href="documentation.html">Documentation</a>
+      </nav>
+    </header>
+
+    <div class="DocFlow__content DocEdit">
+      <div class="DocEdit__toolbar">
+        <div class="DocEdit__meta">
+          <h1 class="DocEdit__title" id="doc-title">Component documentation</h1>
+          <span class="DocEdit__mode" id="view-mode-toggle">Edit mode</span>
+        </div>
+        <div class="DocEdit__actions">
+          <button type="button" class="Button_Secondary" id="copy-btn">Copy</button>
+          <button type="button" class="Button_Primary" id="export-btn">Export .md</button>
+          <a href="documentation.html" class="Button_Secondary">Generate another</a>
+        </div>
+      </div>
+
+      <div class="DocEdit__body">
+        <!-- View mode: rendered markdown -->
+        <div class="DocEdit__view" id="doc-view">
+          <div class="DocRendered" id="doc-rendered"></div>
+        </div>
+
+        <!-- Edit mode: textarea -->
+        <div class="DocEdit__edit" id="doc-edit" hidden>
+          <textarea class="DocEditor" id="doc-editor" spellcheck="false" placeholder="Documentation content..."></textarea>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="documentation.js"></script>
+  <script src="documentation-edit.js"></script>
+</body>
+</html>
