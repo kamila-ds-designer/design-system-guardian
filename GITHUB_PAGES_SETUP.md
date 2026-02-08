@@ -24,8 +24,8 @@ If prompted for credentials, use a Personal Access Token (not your password).
 1. Open your repo on GitHub
 2. Go to **Settings** → **Pages**
 3. Under **Build and deployment**:
-   - **Source**: Deploy from a branch
-   - **Branch**: `main` / `/(root)`
+   - **Source**: **GitHub Actions** (required for the React app)
+   - Do NOT use "Deploy from a branch" — the workflow builds and deploys automatically
 4. Click **Save**
 
 ## Step 4: Wait and view
