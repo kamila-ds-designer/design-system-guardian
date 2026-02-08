@@ -104,7 +104,9 @@ function Sidebar(route) {
     }),
     el('a', { className: 'sidebar-item' + (docsActive && !activeId ? ' active' : ''), href: '#/docs', onclick: (e) => { e.preventDefault(); navigate('/docs'); } }, 'All generated documents'),
     el('div', { className: 'sidebar-section' }, 'Test Audits'),
-    el('a', { className: 'sidebar-item' + (qaActive ? ' active' : ''), href: '#/qa', onclick: (e) => { e.preventDefault(); navigate('/qa'); } }, 'QA audit')
+    el('a', { className: 'sidebar-item' + (qaActive ? ' active' : ''), href: '#/qa', onclick: (e) => { e.preventDefault(); navigate('/qa'); } }, 'QA audit'),
+    el('div', { className: 'sidebar-section' }, 'More'),
+    el('a', { className: 'sidebar-item' + (route.path === 'contact' ? ' active' : ''), href: '#/contact', onclick: (e) => { e.preventDefault(); navigate('/contact'); } }, 'Contact')
   );
 }
 
@@ -720,6 +722,44 @@ function DocsScreen() {
   return StartScreen();
 }
 
+function ContactFormScreen() {
+  const container = el('div', { className: 'contact-form-screen' });
+  container.innerHTML = `
+    <div style="max-width:32rem">
+      <h1 style="margin:0 0 0.25rem">Contact us</h1>
+      <p style="color:hsl(var(--muted-foreground));margin-bottom:1.5rem">Send us a message and we'll get back to you as soon as possible.</p>
+      <form class="card" id="contact-form" style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label class="form-label" for="contact-name">Name</label>
+          <input class="input" id="contact-name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div>
+          <label class="form-label" for="contact-email">Email</label>
+          <input class="input" id="contact-email" name="email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div>
+          <label class="form-label" for="contact-subject">Subject</label>
+          <input class="input" id="contact-subject" name="subject" type="text" placeholder="How can we help?">
+        </div>
+        <div>
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea class="textarea" id="contact-message" name="message" placeholder="Your message..." rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </form>
+    </div>
+  `;
+  const form = container.querySelector('#contact-form');
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    const msg = el('div', { className: 'alert', style: 'margin-top:1rem;background:hsl(142 76% 36% / 0.15);border-color:hsl(142 76% 36% / 0.3)' });
+    msg.innerHTML = '<span style="font-weight:600">✓</span><div><strong>Message sent</strong><br>Thanks for reaching out. We\'ll get back to you soon.</div>';
+    container.appendChild(msg);
+    form.reset();
+  };
+  return container;
+}
+
 // Main render
 function render() {
   const route = getRoute();
@@ -748,6 +788,9 @@ function render() {
       break;
     case 'doc-view':
       main = DocViewScreen(route.params[0] || 'button');
+      break;
+    case 'contact':
+      main = ContactFormScreen();
       break;
     case 'docs':
     default:

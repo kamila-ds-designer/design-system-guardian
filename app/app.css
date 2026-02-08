@@ -132,6 +132,35 @@ body {
 }
 .input::placeholder { color: hsl(var(--muted-foreground)); }
 
+/* Label - shadcn style */
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--foreground));
+}
+
+/* Textarea - shadcn style */
+.textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  background: hsl(var(--input));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  color: hsl(var(--foreground));
+  font-family: inherit;
+  resize: vertical;
+}
+.textarea:focus {
+  outline: none;
+  border-color: hsl(var(--ring));
+  box-shadow: 0 0 0 2px hsl(var(--ring) / 0.2);
+}
+.textarea::placeholder { color: hsl(var(--muted-foreground)); }
+
 /* Card */
 .card {
   background: hsl(var(--card));

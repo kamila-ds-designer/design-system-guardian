@@ -1,0 +1,38 @@
+---
+description: Use shadcn/ui components for Guardian development
+globs: "**/*.{tsx,ts,jsx,js}"
+alwaysApply: true
+---
+
+# shadcn/ui for Guardian
+
+Use **shadcn/ui** components for all UI elements in the Guardian app.
+
+## Components to Use
+
+- **Button**: `import { Button } from "@/components/ui/button"` — Primary, secondary, outline, ghost variants
+- **Input**: `import { Input } from "@/components/ui/input"` — Form inputs
+- **Label**: `import { Label } from "@/components/ui/label"` — Form labels
+- **Card**: `import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"` — Containers
+- **Textarea**: `import { Textarea } from "@/components/ui/textarea"` — Multi-line text
+- **Tabs**: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"` — Tab navigation
+- **Badge**: `import { Badge } from "@/components/ui/badge"` — Status/chips
+- **Alert**: `import { Alert, AlertDescription } from "@/components/ui/alert"` — Notifications
+- **Table**: `import { Table, TableHeader, TableBody, TableRow, TableCell } from "@/components/ui/table"` — Data tables
+
+## Adding Components
+
+```bash
+pnpm dlx shadcn@latest add <component-name>
+```
+
+## Styling
+
+- Use Tailwind classes via `className`
+- Follow shadcn variants: `variant="primary"`, `variant="outline"`, etc.
+- Use design tokens from `src/index.css` (CSS variables)
+
+## Do not
+
+- Create custom button/input/card styles when shadcn equivalents exist
+- Use inline styles for layout; use Tailwind utilities
