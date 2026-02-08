@@ -1,26 +1,4 @@
-/* Guardian App — shadcn-inspired dark theme */
-:root {
-  --background: 0 0% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 0 0% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 0 0% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 14.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
-  --accent: 0 0% 14.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --ring: 0 0% 83.1%;
-  --radius: 0.5rem;
-}
+/* Guardian App — uses theme.css for light/dark */
 
 * { box-sizing: border-box; }
 html { font-size: 16px; -webkit-font-smoothing: antialiased; }
@@ -309,3 +287,80 @@ body {
 }
 .stat-card .value { font-size: 1.5rem; font-weight: 600; }
 .stat-card .label { font-size: 0.75rem; color: hsl(var(--muted-foreground)); }
+
+/* Doc view */
+.doc-view { max-width: 52rem; }
+.doc-label { font-size: 0.75rem; color: hsl(var(--muted-foreground)); text-transform: uppercase; letter-spacing: 0.05em; }
+.doc-title { font-size: 1.75rem; font-weight: 600; margin: 0.25rem 0 0.5rem; }
+.doc-meta p { margin: 0.25rem 0; color: hsl(var(--muted-foreground)); font-size: 0.875rem; }
+.doc-section { margin-bottom: 1.5rem; }
+.doc-section h3 { font-size: 1.125rem; font-weight: 600; margin: 0 0 0.75rem; }
+.doc-section h4 { font-weight: 500; }
+.doc-code { background: hsl(0 0% 9%); color: hsl(0 0% 98%); padding: 1rem 1.25rem; border-radius: var(--radius); overflow-x: auto; font-size: 0.8125rem; line-height: 1.5; margin: 0; }
+.doc-code code { font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace; }
+.doc-resource:hover { background: hsl(var(--accent)); }
+
+/* Audit results */
+.audit-preview-area {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  min-height: 280px;
+}
+.audit-product-card {
+  max-width: 280px;
+  background: white;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: outline 0.15s, box-shadow 0.15s;
+}
+.audit-product-card.audit-highlight,
+.audit-product-card [data-element].audit-highlight {
+  outline: 2px solid hsl(0 84% 60%);
+  outline-offset: 2px;
+}
+.audit-product-card [data-element].audit-highlight {
+  outline: 2px solid hsl(0 84% 60%);
+  outline-offset: 1px;
+}
+.audit-product-image {
+  position: relative;
+  height: 140px;
+  background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--muted) / 0.6) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.audit-bike-placeholder {
+  width: 80px;
+  height: 80px;
+  background: hsl(var(--muted-foreground) / 0.2);
+  border-radius: 50%;
+}
+.audit-badge {
+  position: absolute;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 2px;
+}
+.audit-badge-sale { top: 0.5rem; left: 0.5rem; background: hsl(0 84% 60%); color: white; }
+.audit-badge-new { top: 0.5rem; left: 3rem; background: hsl(48 96% 53%); color: black; }
+.audit-favorite { position: absolute; top: 0.5rem; right: 0.5rem; font-size: 1rem; color: hsl(0 84% 60%); cursor: pointer; }
+.audit-product-dots { display: flex; gap: 0.25rem; padding: 0.5rem 0.75rem; }
+.audit-dot { width: 8px; height: 8px; border-radius: 50%; background: hsl(var(--muted)); }
+.audit-dot-active { background: hsl(var(--foreground)); }
+.audit-product-info { padding: 0 0.75rem 1rem; display: flex; flex-direction: column; gap: 0.125rem; }
+.audit-category { font-size: 0.75rem; color: hsl(var(--muted-foreground)); }
+.audit-product-title { font-weight: 600; font-size: 0.9375rem; }
+.audit-price { font-size: 0.875rem; font-weight: 500; }
+.audit-price-old { font-size: 0.75rem; color: hsl(var(--muted-foreground)); text-decoration: line-through; }
+.audit-price-new { font-size: 0.875rem; color: hsl(0 84% 60%); font-weight: 600; }
+.audit-row-hovered { background: hsl(var(--accent)); }
+.audit-expanded-cell { padding: 1rem; background: hsl(var(--muted) / 0.3); vertical-align: top; }
+.audit-details-list { margin: 0; padding-left: 1.5rem; font-size: 0.875rem; }
+.audit-expanded-section { font-size: 0.875rem; }
+.audit-ready-banner { background: hsl(142 76% 36% / 0.12); border-color: hsl(142 76% 36% / 0.3); }
